@@ -15,30 +15,34 @@ import (
 func main() {
 	app := app.New()
 	w := app.NewWindow("Job Scheduling")
-	// numOfStaff := 1
+	numOfStaff := 1
 	numOfShift := 3
 
 	//user
 	entry := widget.NewEntry()
-	checkbox1 := widget.NewCheck("1", nil)
-	checkbox2 := widget.NewCheck("2", nil)
-	checkbox3 := widget.NewCheck("3", nil)
-	hbox := container.NewHBox(checkbox1, checkbox2, checkbox3)
+	var hboxes []*fyne.Container
+	hboxes = append(hboxes, container.NewHBox())
+	for i := 1; i <= numOfShift; i++ {
+		hboxes[0].Add(widget.NewCheck(fmt.Sprintf("%d", i), nil))
+	}
 	form := &widget.Form{
 		Items: []*widget.FormItem{ // we can specify items in the constructor
 			{Text: "Name", Widget: entry},
-			{Text: "", Widget: hbox}},
+			{Widget: hboxes[0]},
+		},
 	}
 
 	//plus user
 	btnPlusUser := widget.NewButton("+", func() {
+		numOfStaff++
 		entryNew := widget.NewEntry()
-		checkbox1New := widget.NewCheck("1", nil)
-		checkbox2New := widget.NewCheck("2", nil)
-		checkbox3New := widget.NewCheck("3", nil)
-		hbox := container.NewHBox(checkbox1New, checkbox2New, checkbox3New)
+		hboxes = append(hboxes, container.NewHBox())
+		for i := 1; i <= numOfShift; i++ {
+			hboxes[numOfStaff-1].Add(widget.NewCheck(fmt.Sprintf("%d", i), nil))
+		}
+
 		form.Append("Name", entryNew)
-		form.Append("", hbox)
+		form.Append("", hboxes[numOfStaff-1])
 	})
 
 	//schedule
@@ -68,14 +72,19 @@ func main() {
 			fmt.Println("Shift 3:", shift3.Text)
 		},
 	}
+	//plus schedule
 	btnPlusShift := widget.NewButton("+", func() {
 		numOfShift++
 		entryNew := widget.NewEntry()
 		formSchedule.Append(fmt.Sprintf("Shift %d", numOfShift), entryNew)
+		// Add new checkbox
+		for i := range hboxes {
+			hboxes[i].Add(widget.NewCheck(fmt.Sprintf("%d", numOfShift), nil))
+		}
 		addShift(table, len(dayInWeek), numOfShift)
 	})
 
-	w.SetContent(container.New(layout.NewGridLayout(2), container.NewVBox(form, btnPlusUser, formSchedule, btnPlusShift), container.NewVBox(table)))
+	w.SetContent(container.New(layout.NewGridLayout(2), container.NewVBox(form, btnPlusUser, formSchedule, btnPlusShift), table))
 	w.ShowAndRun()
 }
 
