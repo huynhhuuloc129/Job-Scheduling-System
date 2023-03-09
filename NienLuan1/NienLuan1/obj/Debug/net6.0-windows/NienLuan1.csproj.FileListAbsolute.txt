@@ -1,0 +1,20 @@
+C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\bin\Debug\net6.0-windows\NienLuan1.exe
+C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\bin\Debug\net6.0-windows\NienLuan1.deps.json
+C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\bin\Debug\net6.0-windows\NienLuan1.runtimeconfig.json
+C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\bin\Debug\net6.0-windows\NienLuan1.dll
+C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\bin\Debug\net6.0-windows\NienLuan1.pdb
+C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\obj\Debug\net6.0-windows\NienLuan1.csproj.AssemblyReference.cache
+C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\obj\Debug\net6.0-windows\NienLuan1.Form1.resources
+C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\obj\Debug\net6.0-windows\NienLuan1.LoginUI.resources
+C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\obj\Debug\net6.0-windows\NienLuan1.csproj.GenerateResource.cache
+C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\obj\Debug\net6.0-windows\NienLuan1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\obj\Debug\net6.0-windows\NienLuan1.AssemblyInfoInputs.cache
+C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\obj\Debug\net6.0-windows\NienLuan1.AssemblyInfo.cs
+C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\obj\Debug\net6.0-windows\NienLuan1.csproj.CoreCompileInputs.cache
+C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\obj\Debug\net6.0-windows\NienLuan1.dll
+C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\obj\Debug\net6.0-windows\refint\NienLuan1.dll
+C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\obj\Debug\net6.0-windows\NienLuan1.pdb
+C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\obj\Debug\net6.0-windows\NienLuan1.genruntimeconfig.cache
+C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\obj\Debug\net6.0-windows\ref\NienLuan1.dll
+C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\bin\Debug\net6.0-windows\MetroSet UI.dll
+C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\obj\Debug\net6.0-windows\NienLuan1.csproj.CopyComplete
