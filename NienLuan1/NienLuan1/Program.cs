@@ -17,6 +17,11 @@ namespace NienLuan1
             if (loginUI.LoginSuccessful == 1) // Role admin
             {
                 Application.Run(new AdminForm());
+            } else if (loginUI.LoginSuccessful == 2)
+            {
+                UserUI userUI = new UserUI();
+                userUI.username = loginUI.username;
+                Application.Run(userUI);
             }
         }
     }

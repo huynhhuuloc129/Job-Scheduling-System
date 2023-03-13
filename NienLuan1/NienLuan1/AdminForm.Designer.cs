@@ -60,7 +60,7 @@
             gridView.Name = "gridView";
             gridView.RowHeadersWidth = 51;
             gridView.RowTemplate.Height = 29;
-            gridView.Size = new Size(927, 37);
+            gridView.Size = new Size(926, 37);
             gridView.TabIndex = 14;
             // 
             // mondayColumn
@@ -127,7 +127,7 @@
             metroSetControlBox1.CloseNormalForeColor = Color.Gray;
             metroSetControlBox1.DisabledForeColor = Color.DimGray;
             metroSetControlBox1.IsDerivedStyle = true;
-            metroSetControlBox1.Location = new Point(1200, -1);
+            metroSetControlBox1.Location = new Point(1204, -1);
             metroSetControlBox1.MaximizeBox = true;
             metroSetControlBox1.MaximizeHoverBackColor = Color.FromArgb(238, 238, 238);
             metroSetControlBox1.MaximizeHoverForeColor = Color.Gray;
@@ -261,7 +261,7 @@
             // 
             AutoScaleDimensions = new SizeF(13F, 26F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1315, 315);
+            ClientSize = new Size(1319, 315);
             Controls.Add(gridView);
             Controls.Add(logoutBtn);
             Controls.Add(plusAccountBtn);

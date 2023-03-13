@@ -18,3 +18,5 @@ C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\obj\Debug\net7.0-windows\NienL
 C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\obj\Debug\net7.0-windows\NienLuan1.genruntimeconfig.cache
 C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\obj\Debug\net7.0-windows\ref\NienLuan1.dll
 C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\obj\Debug\net7.0-windows\NienLuan1.AdminForm.resources
+C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\bin\Debug\net7.0-windows\Newtonsoft.Json.dll
+C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\obj\Debug\net7.0-windows\NienLuan1.UserUI.resources

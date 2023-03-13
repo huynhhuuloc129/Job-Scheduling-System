@@ -1,4 +1,7 @@
 ﻿using MetroSet_UI.Forms;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
+using NienLuan1.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,6 +10,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,6 +19,7 @@ namespace NienLuan1
     public partial class LoginUI : MetroSetForm
     {
         public int LoginSuccessful;
+        public string username;
         public LoginUI()
         {
             InitializeComponent();
@@ -54,17 +59,27 @@ namespace NienLuan1
             }
 
             this.LoginSuccessful = 0;
-            string path = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Accounts.txt");
-            string[] text = System.IO.File.ReadAllText(path).Split('\n');
+            string path = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Data\Accounts.json");
+            string jsonString = System.IO.File.ReadAllText(path);
 
-            for (int i = 0; i < text.Length - 1; i += 2)
+            List<Account> accountList = (List<Account>)Newtonsoft.Json.JsonConvert.DeserializeObject(jsonString, typeof(List<Account>));
+
+            foreach (var account in accountList)
             {
-                if (txtUsername.Text == text[i].Trim() && txtPassword.Text == text[i + 1].Trim())
+                if (txtUsername.Text == account.username && txtPassword.Text == account.password && txtUsername.Text != "admin")
+                {
+                    this.LoginSuccessful = 2;
+                    this.username = account.username;
+                    this.Close();
+                }
+                if (txtUsername.Text == account.username && txtPassword.Text == account.password && txtUsername.Text == "admin")
                 {
                     this.LoginSuccessful = 1;
                     this.Close();
                 }
             }
+
+
             MessageBox.Show("Invalid Username or Password");
             return;
         }

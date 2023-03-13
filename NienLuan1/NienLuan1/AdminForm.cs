@@ -4,13 +4,17 @@ using System.Collections;
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using System.Xml.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using NienLuan1.Models;
 using static NienLuan1.AdminForm;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using static System.Windows.Forms.LinkLabel;
 
 namespace NienLuan1
 {
-    
+
 
     public partial class AdminForm : MetroSetForm
     {
@@ -24,16 +28,16 @@ namespace NienLuan1
             public int TimeEnd;
         }
 
-        public class Account
-        {
-            public string Username;
-            public string Password;
-            public int[] Shifts;
-        }
-
         public class GridData
         {
-            public Account[] Accounts;
+            public string[] Monday;
+            public string[] Tuesday;
+            public string[] Wednesday;
+            public string[] Mouth;
+            public string[] Thursday;
+            public string[] Friday;
+            public string[] Saturday;
+            public string[] Sunday;
             public Shift[] Shifts;
         }
 
@@ -44,16 +48,18 @@ namespace NienLuan1
             Shift[] shifts;
             this.AutoScroll = true;
             this.AutoSize = true;
-            string path = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Accounts.txt");
-            string[] accountsText = System.IO.File.ReadAllText(path).Split('\n');
+            string path = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Data\Accounts.json");
+            string accountsString = System.IO.File.ReadAllText(path);
+            List<Account> accountList = (List<Account>)Newtonsoft.Json.JsonConvert.DeserializeObject(accountsString, typeof(List<Account>));
 
-            string pathShift = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Shifts.txt");
+            string pathShift = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Data\Shifts.json");
             string shiftsString = System.IO.File.ReadAllText(pathShift).Replace("\n\r", "").Replace("\n", "").Replace("\r", " ");
+            //List<Shift> shiftList = (List<Shift>)Newtonsoft.Json.JsonConvert.DeserializeObject(shiftsString, typeof(List<Shift>));
 
 
-            shifts = initShifts(shiftsString);
-            accounts = initAccounts(accountsText);
-            gridData = initGridData(accounts, shifts);
+            //shifts = initShifts(shiftsString);
+            initAccounts(accountList);
+            //gridData = initGridData(accounts, shifts);
         }
 
         private Shift[] initShifts(string shiftsString)
@@ -70,33 +76,29 @@ namespace NienLuan1
             }
             return shifts;
         }
-        private Account[] initAccounts(string[] accountsText) 
+        private void initAccounts(List<Account> accounts)
         {
-            Account[] accounts = new Account[100];
-            int i, lenAccounts = 0;
-            for (i = 0; i < accountsText.Length - 1; i += 2)
+            var i = -1;
+            foreach (Account account in accounts)
             {
+                i += 2;
                 var tempUsername = new MetroSetLabel();
                 var tempPassword = new MetroSetLabel();
 
                 tempUsername.Location = new Point(10, 150 + i * 20);
-                tempUsername.Text = "Username: " + accountsText[i];
+                tempUsername.Text = "Username: " + account.username;
                 tempUsername.AutoSize = true;
 
                 tempPassword.Location = new Point(10, 170 + i * 20);
-                tempPassword.Text = "Password: " + accountsText[i + 1];
+                tempPassword.Text = "Password: " + account.password;
                 tempPassword.AutoSize = true;
 
                 this.Controls.Add(tempUsername);
                 this.Controls.Add(tempPassword);
                 tempPassword.Show();
                 tempUsername.Show();
-                accounts[lenAccounts]=new Account();
-                accounts[lenAccounts].Username = accountsText[i];
-                accounts[lenAccounts].Password = accountsText[i+1];
-                lenAccounts++;
             }
-
+            i += 2;
             newUsername.Location = new Point(10, 170 + i * 20);
             newPassword.Location = new Point(10, 210 + i * 20);
 
@@ -111,11 +113,9 @@ namespace NienLuan1
 
             newPassword.Show();
             newUsername.Show();
-
-            return accounts;
         }
 
-        private GridData[] initGridData(Account[] accounts,Shift[] shifts)
+        private GridData[] initGridData(Account[] accounts, Shift[] shifts)
         {
             GridData[] gridData = new GridData[100];
             for (int i = 0; i < shifts.Length - 1; i += 2)
@@ -138,22 +138,28 @@ namespace NienLuan1
                 return;
             }
 
-            string path = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Accounts.txt");
-            string text = "\n" + txtNewUsername.Text.Trim().Replace("\n", "").Replace("\r", "") + "\n" + txtNewPassword.Text.Trim().Replace("\n", "").Replace("\r", "");
-            string[] textAccounts = System.IO.File.ReadAllText(path).Split('\n');
+            string path = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Data\Accounts.json");
+            string accountsString = System.IO.File.ReadAllText(path);
+            List<Account> accountList = (List<Account>)Newtonsoft.Json.JsonConvert.DeserializeObject(accountsString, typeof(List<Account>));
 
-            for (int i = 0; i < textAccounts.Length - 1; i += 2)
+
+            foreach (Account account in accountList)
             {
-                if (textAccounts[i].Trim() == txtNewUsername.Text.Trim())
+                if (account.username == txtNewUsername.Text.Trim())
                 {
                     MessageBox.Show("Please input new username, duplicate username");
                     return;
                 }
             }
 
-            using StreamWriter file = new(path, append: true);
-            file.Write(text);
-            file.Close();
+            Account newAccount = new Account();
+            newAccount.username = txtNewUsername.Text;
+            newAccount.password = txtNewPassword.Text;
+            accountList.Add(newAccount);
+
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(accountList);
+            Debug.WriteLine(json);
+            File.WriteAllText(path, json);
             txtNewUsername.Clear();
             txtNewPassword.Clear();
 
