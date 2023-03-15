@@ -34,9 +34,10 @@
             txtFullname = new TextBox();
             txtDob = new TextBox();
             metroSetLabel3 = new MetroSet_UI.Controls.MetroSetLabel();
-            metroSetButton1 = new MetroSet_UI.Controls.MetroSetButton();
+            saveBtn = new MetroSet_UI.Controls.MetroSetButton();
             metroSetControlBox1 = new MetroSet_UI.Controls.MetroSetControlBox();
-            metroSetButton2 = new MetroSet_UI.Controls.MetroSetButton();
+            logoutBtn = new MetroSet_UI.Controls.MetroSetButton();
+            createdAtLabel = new MetroSet_UI.Controls.MetroSetLabel();
             SuspendLayout();
             // 
             // personalInformation
@@ -109,31 +110,32 @@
             metroSetLabel3.ThemeAuthor = "Narwin";
             metroSetLabel3.ThemeName = "MetroLite";
             // 
-            // metroSetButton1
+            // saveBtn
             // 
-            metroSetButton1.DisabledBackColor = Color.FromArgb(120, 65, 177, 225);
-            metroSetButton1.DisabledBorderColor = Color.FromArgb(120, 65, 177, 225);
-            metroSetButton1.DisabledForeColor = Color.Gray;
-            metroSetButton1.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            metroSetButton1.HoverBorderColor = Color.FromArgb(95, 207, 255);
-            metroSetButton1.HoverColor = Color.FromArgb(95, 207, 255);
-            metroSetButton1.HoverTextColor = Color.White;
-            metroSetButton1.IsDerivedStyle = true;
-            metroSetButton1.Location = new Point(250, 205);
-            metroSetButton1.Name = "metroSetButton1";
-            metroSetButton1.NormalBorderColor = Color.FromArgb(65, 177, 225);
-            metroSetButton1.NormalColor = Color.FromArgb(65, 177, 225);
-            metroSetButton1.NormalTextColor = Color.White;
-            metroSetButton1.PressBorderColor = Color.FromArgb(35, 147, 195);
-            metroSetButton1.PressColor = Color.FromArgb(35, 147, 195);
-            metroSetButton1.PressTextColor = Color.White;
-            metroSetButton1.Size = new Size(94, 29);
-            metroSetButton1.Style = MetroSet_UI.Enums.Style.Light;
-            metroSetButton1.StyleManager = null;
-            metroSetButton1.TabIndex = 34;
-            metroSetButton1.Text = "Save";
-            metroSetButton1.ThemeAuthor = "Narwin";
-            metroSetButton1.ThemeName = "MetroLite";
+            saveBtn.DisabledBackColor = Color.FromArgb(120, 65, 177, 225);
+            saveBtn.DisabledBorderColor = Color.FromArgb(120, 65, 177, 225);
+            saveBtn.DisabledForeColor = Color.Gray;
+            saveBtn.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            saveBtn.HoverBorderColor = Color.FromArgb(95, 207, 255);
+            saveBtn.HoverColor = Color.FromArgb(95, 207, 255);
+            saveBtn.HoverTextColor = Color.White;
+            saveBtn.IsDerivedStyle = true;
+            saveBtn.Location = new Point(250, 232);
+            saveBtn.Name = "saveBtn";
+            saveBtn.NormalBorderColor = Color.FromArgb(65, 177, 225);
+            saveBtn.NormalColor = Color.FromArgb(65, 177, 225);
+            saveBtn.NormalTextColor = Color.White;
+            saveBtn.PressBorderColor = Color.FromArgb(35, 147, 195);
+            saveBtn.PressColor = Color.FromArgb(35, 147, 195);
+            saveBtn.PressTextColor = Color.White;
+            saveBtn.Size = new Size(94, 29);
+            saveBtn.Style = MetroSet_UI.Enums.Style.Light;
+            saveBtn.StyleManager = null;
+            saveBtn.TabIndex = 34;
+            saveBtn.Text = "Save";
+            saveBtn.ThemeAuthor = "Narwin";
+            saveBtn.ThemeName = "MetroLite";
+            saveBtn.Click += saveBtn_Click;
             // 
             // metroSetControlBox1
             // 
@@ -161,41 +163,56 @@
             metroSetControlBox1.ThemeAuthor = "Narwin";
             metroSetControlBox1.ThemeName = "MetroLite";
             // 
-            // metroSetButton2
+            // logoutBtn
             // 
-            metroSetButton2.DisabledBackColor = Color.FromArgb(120, 65, 177, 225);
-            metroSetButton2.DisabledBorderColor = Color.FromArgb(120, 65, 177, 225);
-            metroSetButton2.DisabledForeColor = Color.Gray;
-            metroSetButton2.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            metroSetButton2.HoverBorderColor = Color.FromArgb(95, 207, 255);
-            metroSetButton2.HoverColor = Color.FromArgb(95, 207, 255);
-            metroSetButton2.HoverTextColor = Color.White;
-            metroSetButton2.IsDerivedStyle = true;
-            metroSetButton2.Location = new Point(15, 205);
-            metroSetButton2.Name = "metroSetButton2";
-            metroSetButton2.NormalBorderColor = Color.FromArgb(65, 177, 225);
-            metroSetButton2.NormalColor = Color.FromArgb(65, 177, 225);
-            metroSetButton2.NormalTextColor = Color.White;
-            metroSetButton2.PressBorderColor = Color.FromArgb(35, 147, 195);
-            metroSetButton2.PressColor = Color.FromArgb(35, 147, 195);
-            metroSetButton2.PressTextColor = Color.White;
-            metroSetButton2.Size = new Size(94, 29);
-            metroSetButton2.Style = MetroSet_UI.Enums.Style.Light;
-            metroSetButton2.StyleManager = null;
-            metroSetButton2.TabIndex = 36;
-            metroSetButton2.Text = "Logout";
-            metroSetButton2.ThemeAuthor = "Narwin";
-            metroSetButton2.ThemeName = "MetroLite";
-            metroSetButton2.Click += metroSetButton2_Click;
+            logoutBtn.DisabledBackColor = Color.FromArgb(120, 65, 177, 225);
+            logoutBtn.DisabledBorderColor = Color.FromArgb(120, 65, 177, 225);
+            logoutBtn.DisabledForeColor = Color.Gray;
+            logoutBtn.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            logoutBtn.HoverBorderColor = Color.FromArgb(95, 207, 255);
+            logoutBtn.HoverColor = Color.FromArgb(95, 207, 255);
+            logoutBtn.HoverTextColor = Color.White;
+            logoutBtn.IsDerivedStyle = true;
+            logoutBtn.Location = new Point(15, 232);
+            logoutBtn.Name = "logoutBtn";
+            logoutBtn.NormalBorderColor = Color.FromArgb(65, 177, 225);
+            logoutBtn.NormalColor = Color.FromArgb(65, 177, 225);
+            logoutBtn.NormalTextColor = Color.White;
+            logoutBtn.PressBorderColor = Color.FromArgb(35, 147, 195);
+            logoutBtn.PressColor = Color.FromArgb(35, 147, 195);
+            logoutBtn.PressTextColor = Color.White;
+            logoutBtn.Size = new Size(94, 29);
+            logoutBtn.Style = MetroSet_UI.Enums.Style.Light;
+            logoutBtn.StyleManager = null;
+            logoutBtn.TabIndex = 36;
+            logoutBtn.Text = "Logout";
+            logoutBtn.ThemeAuthor = "Narwin";
+            logoutBtn.ThemeName = "MetroLite";
+            logoutBtn.Click += logoutBtn_Click;
+            // 
+            // createdAtLabel
+            // 
+            createdAtLabel.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            createdAtLabel.IsDerivedStyle = true;
+            createdAtLabel.Location = new Point(15, 200);
+            createdAtLabel.Name = "createdAtLabel";
+            createdAtLabel.Size = new Size(125, 29);
+            createdAtLabel.Style = MetroSet_UI.Enums.Style.Light;
+            createdAtLabel.StyleManager = null;
+            createdAtLabel.TabIndex = 37;
+            createdAtLabel.Text = "Created at: ";
+            createdAtLabel.ThemeAuthor = "Narwin";
+            createdAtLabel.ThemeName = "MetroLite";
             // 
             // UserUI
             // 
             AutoScaleDimensions = new SizeF(13F, 26F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(957, 276);
-            Controls.Add(metroSetButton2);
+            Controls.Add(createdAtLabel);
+            Controls.Add(logoutBtn);
             Controls.Add(metroSetControlBox1);
-            Controls.Add(metroSetButton1);
+            Controls.Add(saveBtn);
             Controls.Add(metroSetLabel3);
             Controls.Add(txtDob);
             Controls.Add(txtFullname);
@@ -217,8 +234,9 @@
         private TextBox txtFullname;
         private TextBox txtDob;
         private MetroSet_UI.Controls.MetroSetLabel metroSetLabel3;
-        private MetroSet_UI.Controls.MetroSetButton metroSetButton1;
+        private MetroSet_UI.Controls.MetroSetButton saveBtn;
         private MetroSet_UI.Controls.MetroSetControlBox metroSetControlBox1;
-        private MetroSet_UI.Controls.MetroSetButton metroSetButton2;
+        private MetroSet_UI.Controls.MetroSetButton logoutBtn;
+        private MetroSet_UI.Controls.MetroSetLabel createdAtLabel;
     }
 }

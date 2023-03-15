@@ -155,10 +155,10 @@ namespace NienLuan1
             Account newAccount = new Account();
             newAccount.username = txtNewUsername.Text;
             newAccount.password = txtNewPassword.Text;
+            newAccount.createdAt = DateTime.Now;
             accountList.Add(newAccount);
 
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(accountList);
-            Debug.WriteLine(json);
             File.WriteAllText(path, json);
             txtNewUsername.Clear();
             txtNewPassword.Clear();

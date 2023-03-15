@@ -9,9 +9,7 @@ namespace NienLuan1.Models
 {
     public class Shift
     {
-        [JsonPropertyName("time_start")]
-        public TimeOnly timeStart;
-        [JsonPropertyName("time_end")]
-        public TimeOnly timeEnd;
+        public string timeStart;
+        public string timeEnd;
     }
 }

@@ -1,15 +1,15 @@
 ﻿[
 	{
-		"time_start": "7",
-		"time_end": "12"
+		"timeStart": "7:00",
+		"timeEnd": "12:00"
 	},
 	{
-		"time_start": "12",
-		"time_end": "5"
+		"timeStart": "12:00",
+		"timeEnd": "17:00"
 	},
 	{
-		"time_start": "5",
-		"time_end": "11"
+		"timeStart": "17:00",
+		"timeEnd": "23:00"
 	}
 ]
 

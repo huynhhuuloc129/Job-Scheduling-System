@@ -4,14 +4,21 @@
     "password": "123",
     "name": "",
     "dob": "2002-01-19T00:00:00",
-    "created_at": "2023-11-03T00:00:00",
-    "shift_monday": null,
-    "shift_Tuesday": null,
-    "shift_Wednesday": null,
-    "shift_Thursday": null,
-    "shift_Friday": null,
-    "shift_Saturday": null,
-    "shift_Sunday": null
+    "createdAt": "2023-11-03T00:00:00",
+    "shiftMonday": [
+    ],
+    "shiftTuesday": [
+    ],
+    "shiftWednesday": [
+    ],
+    "shiftThursday": [
+    ],
+    "shiftFriday": [
+    ],
+    "shiftSaturday": [
+    ],
+    "shiftSunday": [
+    ]
   },
   {
     "username": "huynhhuuloc129",
@@ -19,13 +26,20 @@
     "name": "Huynh Huu Loc",
     "dob": "2002-01-19T00:00:00",
     "createdAt": "2023-03-12T00:00:00",
-    "shift_monday": null,
-    "shift_Tuesday": null,
-    "shift_Wednesday": null,
-    "shift_Thursday": null,
-    "shift_Friday": null,
-    "shift_Saturday": null,
-    "shift_Sunday": null
+    "shiftMonday": [
+    ],
+    "shiftTuesday": [
+    ],
+    "shiftWednesday": [
+    ],
+    "shiftThursday": [
+    ],
+    "shiftFriday": [
+    ],
+    "shiftSaturday": [
+    ],
+    "shiftSunday": [
+    ]
   },
   {
     "username": "vyle",
@@ -33,26 +47,110 @@
     "name": "Le Vy",
     "dob": "0001-01-01T00:00:00",
     "createdAt": "0001-01-01T00:00:00",
-    "shift_monday": null,
-    "shift_Tuesday": null,
-    "shift_Wednesday": null,
-    "shift_Thursday": null,
-    "shift_Friday": null,
-    "shift_Saturday": null,
-    "shift_Sunday": null
+    "shiftMonday": [
+    ],
+    "shiftTuesday": [
+    ],
+    "shiftWednesday": [
+    ],
+    "shiftThursday": [
+    ],
+    "shiftFriday": [
+    ],
+    "shiftSaturday": [
+    ],
+    "shiftSunday": [
+    ]
   },
   {
     "username": "vyle1",
     "password": "vyle1",
     "name": "Vy Le Thao",
     "dob": "0001-01-01T00:00:00",
-    "createdAt": "0001-01-01T00:00:00",
-    "shift_monday": null,
-    "shift_Tuesday": null,
-    "shift_Wednesday": null,
-    "shift_Thursday": null,
-    "shift_Friday": null,
-    "shift_Saturday": null,
-    "shift_Sunday": null
+    "createdAt": "2023-03-12T00:00:00",
+    "shiftMonday": [
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "shiftTuesday": [
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "shiftWednesday": [
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "shiftThursday": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "shiftFriday": [
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "shiftSaturday": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "shiftSunday": [
+      0,
+      0,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
   }
 ]

@@ -13,23 +13,15 @@ namespace NienLuan1.Models
         public string password;
         public string name;
         public DateTime dob;
-        [JsonPropertyName("created_at")]
         public DateTime createdAt;
-        [JsonPropertyName("shift_monday")]
         public int[] shiftMonday;
-        [JsonPropertyName("shift_tuesday")]
         public int[] shiftTuesday;
-        [JsonPropertyName("shift_wednesday")]
         public int[] shiftWednesday;
-        [JsonPropertyName("shift_thursday")]
         public int[] shiftThursday;
-        [JsonPropertyName("shift_friday")]
         public int[] shiftFriday;
-        [JsonPropertyName("shift_saturday")]
         public int[] shiftSaturday;
-        [JsonPropertyName("shift_sunday")]
         public int[] shiftSunday;
-               public Account()
+        public Account()
         {
             username = "";
             password = "";
