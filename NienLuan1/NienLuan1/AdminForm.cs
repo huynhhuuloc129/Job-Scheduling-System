@@ -11,6 +11,10 @@ using NienLuan1.Models;
 using static NienLuan1.AdminForm;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using static System.Windows.Forms.LinkLabel;
+using System.ComponentModel;
+using static System.Net.Mime.MediaTypeNames;
+using Microsoft.VisualBasic.ApplicationServices;
+
 
 namespace NienLuan1
 {
@@ -22,60 +26,45 @@ namespace NienLuan1
         {
             InitializeComponent();
         }
-        public class Shift
-        {
-            public int TimeStart;
-            public int TimeEnd;
-        }
 
-        public class GridData
-        {
-            public string[] Monday;
-            public string[] Tuesday;
-            public string[] Wednesday;
-            public string[] Mouth;
-            public string[] Thursday;
-            public string[] Friday;
-            public string[] Saturday;
-            public string[] Sunday;
-            public Shift[] Shifts;
-        }
-
+        private DataGridView gridView;
         private void AdminForm_Load(object sender, EventArgs e)
         {
-            GridData[] gridData;
-            Account[] accounts;
-            Shift[] shifts;
+            GridData gridData;
             this.AutoScroll = true;
             this.AutoSize = true;
             string path = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Data\Accounts.json");
             string accountsString = System.IO.File.ReadAllText(path);
             List<Account> accountList = (List<Account>)Newtonsoft.Json.JsonConvert.DeserializeObject(accountsString, typeof(List<Account>));
-
-            string pathShift = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Data\Shifts.json");
-            string shiftsString = System.IO.File.ReadAllText(pathShift).Replace("\n\r", "").Replace("\n", "").Replace("\r", " ");
-            //List<Shift> shiftList = (List<Shift>)Newtonsoft.Json.JsonConvert.DeserializeObject(shiftsString, typeof(List<Shift>));
-
-
-            //shifts = initShifts(shiftsString);
             initAccounts(accountList);
-            //gridData = initGridData(accounts, shifts);
+
+            // make empty grid
+            gridData = new GridData();
+            gridView = initGridView();
+            gridView.AutoSize = true;
+            gridView.Location = new Point(374, 48);
+            this.Controls.Add(gridView);
         }
 
-        private Shift[] initShifts(string shiftsString)
+        private DataGridView initGridView()
         {
-            Shift[] shifts = new Shift[100];
-            int i, lenShifts = 0;
-            string[] shiftsText = shiftsString.Split(" ");
-            for (i = 0; i < shiftsText.Length - 1; i += 2)
+            string[] columnName = { "Shift", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+            DataGridView dataGridView = new DataGridView();
+
+            dataGridView.AutoGenerateColumns = false;
+            dataGridView.AutoSize = true;
+
+            for (int i = 0; i < columnName.Length; i++)
             {
-                shifts[lenShifts] = new Shift();
-                shifts[lenShifts].TimeStart = Int32.Parse(shiftsText[i]);
-                shifts[lenShifts].TimeEnd = Int32.Parse(shiftsText[i + 1]);
-                lenShifts++;
+                DataGridViewColumn column = new DataGridViewTextBoxColumn();
+                column.DataPropertyName = columnName[i];
+                column.Name = columnName[i];
+                dataGridView.Columns.Add(column);
             }
-            return shifts;
+
+            return dataGridView;
         }
+
         private void initAccounts(List<Account> accounts)
         {
             var i = -1;
@@ -95,8 +84,6 @@ namespace NienLuan1
 
                 this.Controls.Add(tempUsername);
                 this.Controls.Add(tempPassword);
-                tempPassword.Show();
-                tempUsername.Show();
             }
             i += 2;
             newUsername.Location = new Point(10, 170 + i * 20);
@@ -107,22 +94,10 @@ namespace NienLuan1
             txtNewPassword.PasswordChar = '*';
 
             plusAccountBtn.Location = new Point(10, 250 + i * 20);
+            sortBtn.Location = new Point(10, 300 + i * 20);
 
             this.Controls.Add(newUsername);
             this.Controls.Add(newPassword);
-
-            newPassword.Show();
-            newUsername.Show();
-        }
-
-        private GridData[] initGridData(Account[] accounts, Shift[] shifts)
-        {
-            GridData[] gridData = new GridData[100];
-            for (int i = 0; i < shifts.Length - 1; i += 2)
-            {
-                gridData[i] = new GridData();
-            }
-            return gridData;
         }
 
         private void plusAccountBtn_Click(object sender, EventArgs e)
@@ -185,7 +160,117 @@ namespace NienLuan1
 
         private void logoutBtn_Click(object sender, EventArgs e)
         {
-            Application.Restart();
+            System.Windows.Forms.Application.Restart();
+        }
+
+        int countArray(int[] count)
+        {
+            int s = 0;
+            for (int i = 0; i < count.Length; i++)
+            {
+                if (count[i] == 0)
+                {
+                    s++;
+                }
+            }
+            return s;
+        }
+
+        private void sortBtn_Click(object sender, EventArgs e)
+        {
+            // get Accounts
+            string path = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Data\Accounts.json");
+            string accountsString = System.IO.File.ReadAllText(path);
+            List<Account> accountList = (List<Account>)Newtonsoft.Json.JsonConvert.DeserializeObject(accountsString, typeof(List<Account>));
+            // get Shifts
+            string pathShift = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Data\Shifts.json");
+            string jsonStringShift = System.IO.File.ReadAllText(pathShift);
+            List<Shift> shiftList = (List<Shift>)Newtonsoft.Json.JsonConvert.DeserializeObject(jsonStringShift, typeof(List<Shift>));
+
+            // sort account
+            for (int i = 0; i < accountList.Count; i++)
+            {
+                for (int j = 0; j < i; j++)
+                {
+                    var count1 = countArray(accountList[i].shiftMonday) + countArray(accountList[i].shiftTuesday) + countArray(accountList[i].shiftWednesday) + countArray(accountList[i].shiftThursday) + countArray(accountList[i].shiftFriday) + countArray(accountList[i].shiftSaturday) + countArray(accountList[i].shiftSunday);
+                    var count2 = countArray(accountList[j].shiftMonday) + countArray(accountList[j].shiftTuesday) + countArray(accountList[j].shiftWednesday) + countArray(accountList[j].shiftThursday) + countArray(accountList[j].shiftFriday) + countArray(accountList[j].shiftSaturday) + countArray(accountList[j].shiftSunday);
+                    if (count1 > count2)
+                    {
+                        Account tempAccount = new Account(accountList[i]);
+                        accountList[i] = new Account(accountList[j]);
+                        accountList[j] = new Account(tempAccount);
+                    }
+                }
+            }
+            GridData gridData = new GridData();
+
+            string[] dayOfWeek = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+            for (int i = 0; i < dayOfWeek.Length; i++)
+            {
+                foreach (Account account in accountList)
+                {
+                    for (int j = 0; j < shiftList.Count; j++)
+                    {
+                        switch (dayOfWeek[i])
+                        {
+                            case "Monday":
+                                if (account.shiftMonday[j] != 0 && gridData.Monday[j] == null)
+                                {
+                                    gridData.Monday[j] = account.username;
+                                }
+                                break;
+                            case "Tuesday":
+                                if (account.shiftTuesday[j] != 0 && gridData.Tuesday[j] == null)
+                                {
+                                    gridData.Tuesday[j] = account.username;
+                                }
+                                break;
+                            case "Wednesday":
+                                if (account.shiftWednesday[j] != 0 && gridData.Wednesday[j] == null)
+                                {
+                                    gridData.Wednesday[j] = account.username;
+                                }
+                                break;
+                            case "Thursday":
+                                if (account.shiftThursday[j] != 0 && gridData.Thursday[j] == null)
+                                {
+                                    gridData.Thursday[j] = account.username;
+                                }
+                                break;
+                            case "Friday":
+                                if (account.shiftFriday[j] != 0 && gridData.Friday[j] == null)
+                                {
+                                    gridData.Friday[j] = account.username;
+                                }
+                                break;
+                            case "Saturday":
+                                if (account.shiftSaturday[j] != 0 && gridData.Saturday[j] == null)
+                                {
+                                    gridData.Saturday[j] = account.username;
+                                }
+                                break;
+                            case "Sunday":
+                                if (account.shiftSunday[j] != 0 && gridData.Sunday[j] == null)
+                                {
+                                    gridData.Sunday[j] = account.username;
+                                }
+                                break;
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < shiftList.Count; i++)
+            {
+                gridView.Rows.Add(i + 1, gridData.Monday[i], gridData.Tuesday[i], gridData.Wednesday[i], gridData.Thursday[i], gridData.Friday[i], gridData.Saturday[i], gridData.Sunday[i]);
+            }
+
+
+            gridView.AutoSize = true;
+            gridView.Location = new Point(374, 48);
+            gridView.Update();
+            gridView.Refresh();
+
         }
     }
 }

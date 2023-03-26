@@ -28,14 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridView gridView;
-            mondayColumn = new DataGridViewTextBoxColumn();
-            tuesdayColumn = new DataGridViewTextBoxColumn();
-            wednesdayColumn = new DataGridViewTextBoxColumn();
-            thursdayColumn = new DataGridViewTextBoxColumn();
-            fridayColumn = new DataGridViewTextBoxColumn();
-            saturdayColumn = new DataGridViewTextBoxColumn();
-            sundayColumn = new DataGridViewTextBoxColumn();
             metroSetControlBox1 = new MetroSet_UI.Controls.MetroSetControlBox();
             metroSetLabel1 = new MetroSet_UI.Controls.MetroSetLabel();
             newPassword = new MetroSet_UI.Controls.MetroSetLabel();
@@ -44,80 +36,8 @@
             txtNewUsername = new TextBox();
             plusAccountBtn = new MetroSet_UI.Controls.MetroSetButton();
             logoutBtn = new MetroSet_UI.Controls.MetroSetButton();
-            gridView = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)gridView).BeginInit();
+            sortBtn = new MetroSet_UI.Controls.MetroSetButton();
             SuspendLayout();
-            // 
-            // gridView
-            // 
-            gridView.AllowUserToAddRows = false;
-            gridView.AllowUserToDeleteRows = false;
-            gridView.AllowUserToResizeColumns = false;
-            gridView.AllowUserToResizeRows = false;
-            gridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridView.Columns.AddRange(new DataGridViewColumn[] { mondayColumn, tuesdayColumn, wednesdayColumn, thursdayColumn, fridayColumn, saturdayColumn, sundayColumn });
-            gridView.Location = new Point(374, 48);
-            gridView.Name = "gridView";
-            gridView.RowHeadersWidth = 51;
-            gridView.RowTemplate.Height = 29;
-            gridView.Size = new Size(926, 37);
-            gridView.TabIndex = 14;
-            // 
-            // mondayColumn
-            // 
-            mondayColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            mondayColumn.HeaderText = "Monday";
-            mondayColumn.MinimumWidth = 6;
-            mondayColumn.Name = "mondayColumn";
-            mondayColumn.Width = 118;
-            // 
-            // tuesdayColumn
-            // 
-            tuesdayColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            tuesdayColumn.HeaderText = "Tuesday";
-            tuesdayColumn.MinimumWidth = 6;
-            tuesdayColumn.Name = "tuesdayColumn";
-            tuesdayColumn.Width = 123;
-            // 
-            // wednesdayColumn
-            // 
-            wednesdayColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            wednesdayColumn.HeaderText = "Wednesday";
-            wednesdayColumn.MinimumWidth = 6;
-            wednesdayColumn.Name = "wednesdayColumn";
-            wednesdayColumn.Width = 156;
-            // 
-            // thursdayColumn
-            // 
-            thursdayColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            thursdayColumn.HeaderText = "Thursday";
-            thursdayColumn.MinimumWidth = 6;
-            thursdayColumn.Name = "thursdayColumn";
-            thursdayColumn.Width = 130;
-            // 
-            // fridayColumn
-            // 
-            fridayColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            fridayColumn.HeaderText = "Friday";
-            fridayColumn.MinimumWidth = 6;
-            fridayColumn.Name = "fridayColumn";
-            fridayColumn.Width = 101;
-            // 
-            // saturdayColumn
-            // 
-            saturdayColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            saturdayColumn.HeaderText = "Saturday";
-            saturdayColumn.MinimumWidth = 6;
-            saturdayColumn.Name = "saturdayColumn";
-            saturdayColumn.Width = 128;
-            // 
-            // sundayColumn
-            // 
-            sundayColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            sundayColumn.HeaderText = "Sunday";
-            sundayColumn.MinimumWidth = 6;
-            sundayColumn.Name = "sundayColumn";
-            sundayColumn.Width = 115;
             // 
             // metroSetControlBox1
             // 
@@ -257,12 +177,39 @@
             logoutBtn.ThemeName = "MetroLite";
             logoutBtn.Click += logoutBtn_Click;
             // 
+            // sortBtn
+            // 
+            sortBtn.DisabledBackColor = Color.FromArgb(120, 65, 177, 225);
+            sortBtn.DisabledBorderColor = Color.FromArgb(120, 65, 177, 225);
+            sortBtn.DisabledForeColor = Color.Gray;
+            sortBtn.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            sortBtn.HoverBorderColor = Color.FromArgb(95, 207, 255);
+            sortBtn.HoverColor = Color.FromArgb(95, 207, 255);
+            sortBtn.HoverTextColor = Color.White;
+            sortBtn.IsDerivedStyle = true;
+            sortBtn.Location = new Point(250, 281);
+            sortBtn.Name = "sortBtn";
+            sortBtn.NormalBorderColor = Color.FromArgb(65, 177, 225);
+            sortBtn.NormalColor = Color.FromArgb(65, 177, 225);
+            sortBtn.NormalTextColor = Color.White;
+            sortBtn.PressBorderColor = Color.FromArgb(35, 147, 195);
+            sortBtn.PressColor = Color.FromArgb(35, 147, 195);
+            sortBtn.PressTextColor = Color.White;
+            sortBtn.Size = new Size(94, 29);
+            sortBtn.Style = MetroSet_UI.Enums.Style.Light;
+            sortBtn.StyleManager = null;
+            sortBtn.TabIndex = 15;
+            sortBtn.Text = "Sort";
+            sortBtn.ThemeAuthor = "Narwin";
+            sortBtn.ThemeName = "MetroLite";
+            sortBtn.Click += sortBtn_Click;
+            // 
             // AdminForm
             // 
             AutoScaleDimensions = new SizeF(13F, 26F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1319, 315);
-            Controls.Add(gridView);
+            ClientSize = new Size(1319, 357);
+            Controls.Add(sortBtn);
             Controls.Add(logoutBtn);
             Controls.Add(plusAccountBtn);
             Controls.Add(newPassword);
@@ -274,7 +221,6 @@
             Name = "AdminForm";
             Text = "System Scheduling Management";
             Load += AdminForm_Load;
-            ((System.ComponentModel.ISupportInitialize)gridView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -289,13 +235,6 @@
         private TextBox txtNewUsername;
         private MetroSet_UI.Controls.MetroSetButton plusAccountBtn;
         private MetroSet_UI.Controls.MetroSetButton logoutBtn;
-        private DataGridView gridView;
-        private DataGridViewTextBoxColumn mondayColumn;
-        private DataGridViewTextBoxColumn tuesdayColumn;
-        private DataGridViewTextBoxColumn wednesdayColumn;
-        private DataGridViewTextBoxColumn thursdayColumn;
-        private DataGridViewTextBoxColumn fridayColumn;
-        private DataGridViewTextBoxColumn saturdayColumn;
-        private DataGridViewTextBoxColumn sundayColumn;
+        private MetroSet_UI.Controls.MetroSetButton sortBtn;
     }
 }

@@ -47,6 +47,7 @@ namespace NienLuan1
                     personalInformation.Text = "Personal Information: " + account.username;
                     personalInformation.AutoSize = true;
                     txtFullname.Text = account.name;
+                    txtFullname.SelectionLength = 0;
                     txtDob.Text = account.dob.ToShortDateString();
                     createdAtLabel.Text = "Created at: " + account.createdAt;
                     createdAtLabel.AutoSize = true;
@@ -55,14 +56,14 @@ namespace NienLuan1
                 }
             }
 
-            int i = -1;
-            
-            foreach (Shift shift in shiftList)
+            int i;
+            for (i = 0; i < shiftList.Count; i++)
             {
-                i++;
                 cbMonday[i] = new CheckBox();
                 cbMonday[i].Text = (i + 1).ToString();
                 cbMonday[i].AutoSize = true;
+                cbMonday[i].BackColor = Color.White;
+                cbMonday[i].ForeColor = Color.Black;
                 if (Array.IndexOf(thisAccount.shiftMonday, i+1) > -1)
                 {
                     cbMonday[i].Checked = true;
@@ -70,6 +71,8 @@ namespace NienLuan1
                 cbTuesday[i] = new CheckBox();
                 cbTuesday[i].Text = (i + 1).ToString();
                 cbTuesday[i].AutoSize = true;
+                cbTuesday[i].BackColor = Color.White;
+                cbTuesday[i].ForeColor = Color.Black;
                 if (Array.IndexOf(thisAccount.shiftTuesday, i + 1) > -1)
                 {
                     cbTuesday[i].Checked = true;
@@ -77,6 +80,8 @@ namespace NienLuan1
                 cbWednesday[i] = new CheckBox();
                 cbWednesday[i].Text = (i + 1).ToString();
                 cbWednesday[i].AutoSize = true;
+                cbWednesday[i].BackColor = Color.White;
+                cbWednesday[i].ForeColor = Color.Black;
                 if (Array.IndexOf(thisAccount.shiftWednesday, i + 1) > -1)
                 {
                     cbWednesday[i].Checked = true;
@@ -84,6 +89,8 @@ namespace NienLuan1
                 cbThursday[i] = new CheckBox();
                 cbThursday[i].Text = (i + 1).ToString();
                 cbThursday[i].AutoSize = true;
+                cbThursday[i].BackColor = Color.White;
+                cbThursday[i].ForeColor = Color.Black;
                 if (Array.IndexOf(thisAccount.shiftThursday, i + 1) > -1)
                 {
                     cbThursday[i].Checked = true;
@@ -91,6 +98,8 @@ namespace NienLuan1
                 cbFriday[i] = new CheckBox();
                 cbFriday[i].Text = (i + 1).ToString();
                 cbFriday[i].AutoSize = true;
+                cbFriday[i].BackColor = Color.White;
+                cbFriday[i].ForeColor = Color.Black;
                 if (Array.IndexOf(thisAccount.shiftFriday, i + 1) > -1)
                 {
                     cbFriday[i].Checked = true;
@@ -98,6 +107,8 @@ namespace NienLuan1
                 cbSaturday[i] = new CheckBox();
                 cbSaturday[i].Text = (i + 1).ToString();
                 cbSaturday[i].AutoSize = true;
+                cbSaturday[i].BackColor = Color.White;
+                cbSaturday[i].ForeColor = Color.Black;
                 if (Array.IndexOf(thisAccount.shiftSaturday, i + 1) > -1)
                 {
                     cbSaturday[i].Checked = true;
@@ -105,10 +116,13 @@ namespace NienLuan1
                 cbSunday[i] = new CheckBox();
                 cbSunday[i].Text = (i + 1).ToString();
                 cbSunday[i].AutoSize = true;
+                cbSunday[i].BackColor = Color.White;
+                cbSunday[i].ForeColor = Color.Black;
                 if (Array.IndexOf(thisAccount.shiftSunday, i + 1) > -1)
                 {
                     cbSunday[i].Checked = true;
                 }
+
                 cbMonday[i].Location = new System.Drawing.Point(409, 134 + 26 * i);
                 cbTuesday[i].Location = new System.Drawing.Point(488, 134 + 26 * i);
                 cbWednesday[i].Location = new System.Drawing.Point(575, 134 + 26 * i);
@@ -124,15 +138,16 @@ namespace NienLuan1
                 this.Controls.Add(cbFriday[i]);
                 this.Controls.Add(cbSaturday[i]);
                 this.Controls.Add(cbSunday[i]);
-
-                cbMonday[i].Show();
-                cbTuesday[i].Show();
-                cbWednesday[i].Show();
-                cbThursday[i].Show();
-                cbFriday[i].Show();
-                cbSaturday[i].Show();
-                cbSunday[i].Show();
             }
+            for (i = 0; i < shiftList.Count; i++)
+            {
+                var shiftLabel = new MetroSetLabel();
+                shiftLabel.Text = "Shift "+ (i+1).ToString() + ": " + shiftList[i].timeStart.ToString() + " - " + shiftList[i].timeEnd.ToString();
+                shiftLabel.AutoSize = true;
+                shiftLabel.Location = new System.Drawing.Point(400, 240 + 26 * i);
+                this.Controls.Add(shiftLabel);
+            }
+            this.AutoSize = true;
         }
 
         private void logoutBtn_Click(object sender, EventArgs e)
@@ -156,13 +171,13 @@ namespace NienLuan1
                 positionAcc++;
                 if (account.username == username)
                 {
-                    accountList[positionAcc].shiftMonday = new int[shiftList.Count+1];
-                    accountList[positionAcc].shiftTuesday = new int[shiftList.Count + 1];
-                    accountList[positionAcc].shiftWednesday = new int[shiftList.Count + 1];
-                    accountList[positionAcc].shiftThursday = new int[shiftList.Count + 1];
-                    accountList[positionAcc].shiftFriday = new int[shiftList.Count + 1];
-                    accountList[positionAcc].shiftSaturday = new int[shiftList.Count + 1];
-                    accountList[positionAcc].shiftSunday = new int[shiftList.Count + 1];
+                    accountList[positionAcc].shiftMonday = new int[shiftList.Count];
+                    accountList[positionAcc].shiftTuesday = new int[shiftList.Count];
+                    accountList[positionAcc].shiftWednesday = new int[shiftList.Count];
+                    accountList[positionAcc].shiftThursday = new int[shiftList.Count];
+                    accountList[positionAcc].shiftFriday = new int[shiftList.Count];
+                    accountList[positionAcc].shiftSaturday = new int[shiftList.Count];
+                    accountList[positionAcc].shiftSunday = new int[shiftList.Count];
                     break;
                 }
             }
@@ -206,14 +221,18 @@ namespace NienLuan1
                     countChecked++;
                 }
             }
+            if (txtDob.Text == "")
+            {
+                MessageBox.Show("Your birthday cannot be empty");
+                return;
+            }
             if (txtFullname.Text == "")
             {
                 MessageBox.Show("Your name cannot be empty");
                 return;
-            } else
-            {
-                accountList[positionAcc].name = txtFullname.Text;
             }
+            accountList[positionAcc].dob = DateTime.Parse(txtDob.Text);
+            accountList[positionAcc].name = txtFullname.Text;
             if (countChecked == 0)
             {
                 MessageBox.Show("Please select atleast 1 shift");
