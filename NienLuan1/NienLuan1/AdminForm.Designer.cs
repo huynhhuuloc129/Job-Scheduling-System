@@ -71,7 +71,7 @@
             metroSetLabel1.IsDerivedStyle = true;
             metroSetLabel1.Location = new Point(15, 105);
             metroSetLabel1.Name = "metroSetLabel1";
-            metroSetLabel1.Size = new Size(85, 26);
+            metroSetLabel1.Size = new Size(93, 26);
             metroSetLabel1.Style = MetroSet_UI.Enums.Style.Light;
             metroSetLabel1.StyleManager = null;
             metroSetLabel1.TabIndex = 1;
@@ -160,7 +160,7 @@
             logoutBtn.HoverColor = Color.FromArgb(95, 207, 255);
             logoutBtn.HoverTextColor = Color.White;
             logoutBtn.IsDerivedStyle = true;
-            logoutBtn.Location = new Point(114, 105);
+            logoutBtn.Location = new Point(129, 105);
             logoutBtn.Name = "logoutBtn";
             logoutBtn.NormalBorderColor = Color.FromArgb(65, 177, 225);
             logoutBtn.NormalColor = Color.FromArgb(65, 177, 225);

@@ -14,6 +14,7 @@ using static System.Windows.Forms.LinkLabel;
 using System.ComponentModel;
 using static System.Net.Mime.MediaTypeNames;
 using Microsoft.VisualBasic.ApplicationServices;
+using System.IO;
 
 
 namespace NienLuan1
@@ -30,20 +31,41 @@ namespace NienLuan1
         private DataGridView gridView;
         private void AdminForm_Load(object sender, EventArgs e)
         {
-            GridData gridData;
             this.AutoScroll = true;
             this.AutoSize = true;
             string path = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Data\Accounts.json");
             string accountsString = System.IO.File.ReadAllText(path);
             List<Account> accountList = (List<Account>)Newtonsoft.Json.JsonConvert.DeserializeObject(accountsString, typeof(List<Account>));
+
+            string pathGrid = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Data\Grid.json");
+            string gridStr = System.IO.File.ReadAllText(pathGrid);
+            GridData gridData = Newtonsoft.Json.JsonConvert.DeserializeObject<GridData>(gridStr);
+
+            string pathShift = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Data\Shifts.json");
+            string jsonStringShift = System.IO.File.ReadAllText(pathShift);
+            List<Shift> shiftList = (List<Shift>)Newtonsoft.Json.JsonConvert.DeserializeObject(jsonStringShift, typeof(List<Shift>));
+
             initAccounts(accountList);
 
             // make empty grid
-            gridData = new GridData();
             gridView = initGridView();
             gridView.AutoSize = true;
             gridView.Location = new Point(374, 48);
+            for (int i = 0; i < shiftList.Count; i++)
+            {
+                gridView.Rows.Add(i + 1, gridData.Monday[i], gridData.Tuesday[i], gridData.Wednesday[i], gridData.Thursday[i], gridData.Friday[i], gridData.Saturday[i], gridData.Sunday[i]);
+            }
             this.Controls.Add(gridView);
+
+
+            for (int i = 0; i < shiftList.Count; i++)
+            {
+                var shiftLabel = new MetroSetLabel();
+                shiftLabel.Text = "Shift " + (i + 1).ToString() + ": " + shiftList[i].timeStart.ToString() + " - " + shiftList[i].timeEnd.ToString();
+                shiftLabel.AutoSize = true;
+                shiftLabel.Location = new System.Drawing.Point(400, 240 + 26 * i);
+                this.Controls.Add(shiftLabel);
+            }
         }
 
         private DataGridView initGridView()
@@ -60,6 +82,7 @@ namespace NienLuan1
                 column.DataPropertyName = columnName[i];
                 column.Name = columnName[i];
                 dataGridView.Columns.Add(column);
+                dataGridView.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
 
             return dataGridView;
@@ -74,11 +97,11 @@ namespace NienLuan1
                 var tempUsername = new MetroSetLabel();
                 var tempPassword = new MetroSetLabel();
 
-                tempUsername.Location = new Point(10, 150 + i * 20);
+                tempUsername.Location = new Point(10, 130 + i * 24);
                 tempUsername.Text = "Username: " + account.username;
                 tempUsername.AutoSize = true;
 
-                tempPassword.Location = new Point(10, 170 + i * 20);
+                tempPassword.Location = new Point(10, 150 + i * 24);
                 tempPassword.Text = "Password: " + account.password;
                 tempPassword.AutoSize = true;
 
@@ -86,15 +109,15 @@ namespace NienLuan1
                 this.Controls.Add(tempPassword);
             }
             i += 2;
-            newUsername.Location = new Point(10, 170 + i * 20);
-            newPassword.Location = new Point(10, 210 + i * 20);
+            newUsername.Location = new Point(10, 150 + i * 24);
+            newPassword.Location = new Point(10, 190 + i * 24);
 
-            txtNewUsername.Location = new Point(110, 170 + i * 20);
-            txtNewPassword.Location = new Point(110, 210 + i * 20);
+            txtNewUsername.Location = new Point(110, 150 + i * 24);
+            txtNewPassword.Location = new Point(110, 190 + i * 24);
             txtNewPassword.PasswordChar = '*';
 
-            plusAccountBtn.Location = new Point(10, 250 + i * 20);
-            sortBtn.Location = new Point(10, 300 + i * 20);
+            plusAccountBtn.Location = new Point(10, 230 + i * 24);
+            sortBtn.Location = new Point(10, 280 + i * 24);
 
             this.Controls.Add(newUsername);
             this.Controls.Add(newPassword);
@@ -178,6 +201,7 @@ namespace NienLuan1
 
         private void sortBtn_Click(object sender, EventArgs e)
         {
+            gridView.Rows.Clear();
             // get Accounts
             string path = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Data\Accounts.json");
             string accountsString = System.IO.File.ReadAllText(path);
@@ -264,13 +288,14 @@ namespace NienLuan1
             {
                 gridView.Rows.Add(i + 1, gridData.Monday[i], gridData.Tuesday[i], gridData.Wednesday[i], gridData.Thursday[i], gridData.Friday[i], gridData.Saturday[i], gridData.Sunday[i]);
             }
-
-
             gridView.AutoSize = true;
             gridView.Location = new Point(374, 48);
             gridView.Update();
             gridView.Refresh();
 
+            string pathGrid = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Data\Grid.json");
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(gridData);
+            File.WriteAllText(pathGrid, json);
         }
     }
 }
