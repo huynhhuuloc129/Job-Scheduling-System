@@ -78,8 +78,6 @@ namespace NienLuan1
                     this.Close();
                 }
             }
-
-
             MessageBox.Show("Invalid Username or Password");
             return;
         }

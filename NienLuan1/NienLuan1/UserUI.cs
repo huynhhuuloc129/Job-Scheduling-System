@@ -187,37 +187,37 @@ namespace NienLuan1
                 i++;
                 if (cbMonday[i].Checked)
                 {
-                    accountList[positionAcc].shiftMonday[i] = i + 1;
+                    accountList[positionAcc].shiftMonday[i] = 1;
                     countChecked++;
                 }
                 if (cbTuesday[i].Checked)
                 {
-                    accountList[positionAcc].shiftTuesday[i] = i + 1;
+                    accountList[positionAcc].shiftTuesday[i] = 1;
                     countChecked++;
                 }
                 if (cbWednesday[i].Checked)
                 {
-                    accountList[positionAcc].shiftWednesday[i] = i + 1;
+                    accountList[positionAcc].shiftWednesday[i] = 1;
                     countChecked++;
                 }
                 if (cbThursday[i].Checked)
                 {
-                    accountList[positionAcc].shiftThursday[i] = i + 1;
+                    accountList[positionAcc].shiftThursday[i] = 1;
                     countChecked++;
                 }
                 if (cbFriday[i].Checked)
                 {   
-                    accountList[positionAcc].shiftFriday[i] = i + 1;
+                    accountList[positionAcc].shiftFriday[i] = 1;
                     countChecked++;
                 }
                 if (cbSaturday[i].Checked)
                 {
-                    accountList[positionAcc].shiftSaturday[i] = i + 1;
+                    accountList[positionAcc].shiftSaturday[i] = 1;
                     countChecked++;
                 }
                 if (cbSunday[i].Checked)
                 {   
-                    accountList[positionAcc].shiftSunday[i] = i + 1;
+                    accountList[positionAcc].shiftSunday[i] = 1;
                     countChecked++;
                 }
             }
@@ -240,6 +240,7 @@ namespace NienLuan1
             }
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(accountList);
             File.WriteAllText(path, json);
+            MessageBox.Show("Save successful");
             UserUI_Load(null, EventArgs.Empty);
         }
     }

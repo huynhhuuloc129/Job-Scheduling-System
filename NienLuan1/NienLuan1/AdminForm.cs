@@ -15,6 +15,7 @@ using System.ComponentModel;
 using static System.Net.Mime.MediaTypeNames;
 using Microsoft.VisualBasic.ApplicationServices;
 using System.IO;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 
 namespace NienLuan1
@@ -51,32 +52,37 @@ namespace NienLuan1
             gridView = initGridView();
             gridView.AutoSize = true;
             gridView.Location = new Point(374, 48);
+            gridView.EditMode = DataGridViewEditMode.EditOnEnter;
             for (int i = 0; i < shiftList.Count; i++)
             {
                 gridView.Rows.Add(i + 1, gridData.Monday[i], gridData.Tuesday[i], gridData.Wednesday[i], gridData.Thursday[i], gridData.Friday[i], gridData.Saturday[i], gridData.Sunday[i]);
             }
             this.Controls.Add(gridView);
 
-
+             
             for (int i = 0; i < shiftList.Count; i++)
             {
                 var shiftLabel = new MetroSetLabel();
                 shiftLabel.Text = "Shift " + (i + 1).ToString() + ": " + shiftList[i].timeStart.ToString() + " - " + shiftList[i].timeEnd.ToString();
                 shiftLabel.AutoSize = true;
-                shiftLabel.Location = new System.Drawing.Point(400, 240 + 26 * i);
+                shiftLabel.Location = new System.Drawing.Point(400, 26 * i + (shiftList.Count+5)*32);
                 this.Controls.Add(shiftLabel);
             }
         }
 
         private DataGridView initGridView()
         {
+            string pathShift = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Data\Shifts.json");
+            string jsonStringShift = System.IO.File.ReadAllText(pathShift);
+            List<Shift> shiftList = (List<Shift>)Newtonsoft.Json.JsonConvert.DeserializeObject(jsonStringShift, typeof(List<Shift>));
+
             string[] columnName = { "Shift", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
             DataGridView dataGridView = new DataGridView();
 
             dataGridView.AutoGenerateColumns = false;
             dataGridView.AutoSize = true;
-
-            for (int i = 0; i < columnName.Length; i++)
+            int i;
+            for (i = 0; i < columnName.Length; i++)
             {
                 DataGridViewColumn column = new DataGridViewTextBoxColumn();
                 column.DataPropertyName = columnName[i];
@@ -84,7 +90,7 @@ namespace NienLuan1
                 dataGridView.Columns.Add(column);
                 dataGridView.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
-
+            saveDataBtn.Location = new Point(600,(shiftList.Count + 5) * 32);
             return dataGridView;
         }
 
@@ -96,6 +102,16 @@ namespace NienLuan1
                 i += 2;
                 var tempUsername = new MetroSetLabel();
                 var tempPassword = new MetroSetLabel();
+                var showBtn = new Button();
+
+                showBtn.Location = new Point(250, 130 + i * 24);
+                showBtn.Text = "Show";
+                showBtn.AutoSize = true;
+                showBtn.BackColor = Color.Blue;
+                showBtn.ForeColor = Color.White;
+                showBtn.Name = account.username;
+                showBtn.Click += new EventHandler(showBtn_Click);
+                showBtn.Cursor = Cursors.Hand;
 
                 tempUsername.Location = new Point(10, 130 + i * 24);
                 tempUsername.Text = "Username: " + account.username;
@@ -107,6 +123,7 @@ namespace NienLuan1
 
                 this.Controls.Add(tempUsername);
                 this.Controls.Add(tempPassword);
+                this.Controls.Add(showBtn);
             }
             i += 2;
             newUsername.Location = new Point(10, 150 + i * 24);
@@ -121,6 +138,13 @@ namespace NienLuan1
 
             this.Controls.Add(newUsername);
             this.Controls.Add(newPassword);
+        }
+
+        private void showBtn_Click(object sender, System.EventArgs e)
+        {
+            var button = (Button)sender;
+            ShowShiftForm ssf = new ShowShiftForm(button.Name);
+            ssf.Show();
         }
 
         private void plusAccountBtn_Click(object sender, EventArgs e)
@@ -191,10 +215,7 @@ namespace NienLuan1
             int s = 0;
             for (int i = 0; i < count.Length; i++)
             {
-                if (count[i] == 0)
-                {
-                    s++;
-                }
+                s += count[i];
             }
             return s;
         }
@@ -296,6 +317,26 @@ namespace NienLuan1
             string pathGrid = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Data\Grid.json");
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(gridData);
             File.WriteAllText(pathGrid, json);
+        }
+
+        private void saveDataBtn_Click(object sender, EventArgs e)
+        {
+            GridData gridData = new GridData();
+            for (int i = 0; i<gridView.RowCount; i++) {
+                gridData.Monday[i]= gridView.Rows[i].Cells[1].Value?.ToString();
+                gridData.Tuesday[i] = gridView.Rows[i].Cells[2].Value?.ToString();
+                gridData.Wednesday[i] = gridView.Rows[i].Cells[3].Value?.ToString();
+                gridData.Thursday[i] = gridView.Rows[i].Cells[4].Value?.ToString();
+                gridData.Friday[i] = gridView.Rows[i].Cells[5].Value?.ToString();
+                gridData.Saturday[i] = gridView.Rows[i].Cells[6].Value?.ToString();
+                gridData.Sunday[i] = gridView.Rows[i].Cells[7].Value?.ToString();
+            }
+
+            string pathGrid = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Data\Grid.json");
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(gridData);
+
+            File.WriteAllText(pathGrid, json);
+            MessageBox.Show("Save Successful!");
         }
     }
 }

@@ -37,6 +37,7 @@
             plusAccountBtn = new MetroSet_UI.Controls.MetroSetButton();
             logoutBtn = new MetroSet_UI.Controls.MetroSetButton();
             sortBtn = new MetroSet_UI.Controls.MetroSetButton();
+            saveDataBtn = new MetroSet_UI.Controls.MetroSetButton();
             SuspendLayout();
             // 
             // metroSetControlBox1
@@ -204,11 +205,39 @@
             sortBtn.ThemeName = "MetroLite";
             sortBtn.Click += sortBtn_Click;
             // 
+            // saveDataBtn
+            // 
+            saveDataBtn.DisabledBackColor = Color.FromArgb(120, 65, 177, 225);
+            saveDataBtn.DisabledBorderColor = Color.FromArgb(120, 65, 177, 225);
+            saveDataBtn.DisabledForeColor = Color.Gray;
+            saveDataBtn.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            saveDataBtn.HoverBorderColor = Color.FromArgb(95, 207, 255);
+            saveDataBtn.HoverColor = Color.FromArgb(95, 207, 255);
+            saveDataBtn.HoverTextColor = Color.White;
+            saveDataBtn.IsDerivedStyle = true;
+            saveDataBtn.Location = new Point(1152, 266);
+            saveDataBtn.Name = "saveDataBtn";
+            saveDataBtn.NormalBorderColor = Color.FromArgb(65, 177, 225);
+            saveDataBtn.NormalColor = Color.FromArgb(65, 177, 225);
+            saveDataBtn.NormalTextColor = Color.White;
+            saveDataBtn.PressBorderColor = Color.FromArgb(35, 147, 195);
+            saveDataBtn.PressColor = Color.FromArgb(35, 147, 195);
+            saveDataBtn.PressTextColor = Color.White;
+            saveDataBtn.Size = new Size(111, 44);
+            saveDataBtn.Style = MetroSet_UI.Enums.Style.Light;
+            saveDataBtn.StyleManager = null;
+            saveDataBtn.TabIndex = 16;
+            saveDataBtn.Text = "Save Data";
+            saveDataBtn.ThemeAuthor = "Narwin";
+            saveDataBtn.ThemeName = "MetroLite";
+            saveDataBtn.Click += saveDataBtn_Click;
+            // 
             // AdminForm
             // 
             AutoScaleDimensions = new SizeF(13F, 26F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1319, 357);
+            Controls.Add(saveDataBtn);
             Controls.Add(sortBtn);
             Controls.Add(logoutBtn);
             Controls.Add(plusAccountBtn);
@@ -236,5 +265,6 @@
         private MetroSet_UI.Controls.MetroSetButton plusAccountBtn;
         private MetroSet_UI.Controls.MetroSetButton logoutBtn;
         private MetroSet_UI.Controls.MetroSetButton sortBtn;
+        private MetroSet_UI.Controls.MetroSetButton saveDataBtn;
     }
 }

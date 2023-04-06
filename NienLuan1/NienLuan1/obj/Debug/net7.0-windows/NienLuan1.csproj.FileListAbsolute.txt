@@ -20,3 +20,4 @@ C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\obj\Debug\net7.0-windows\ref\N
 C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\obj\Debug\net7.0-windows\NienLuan1.AdminForm.resources
 C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\bin\Debug\net7.0-windows\Newtonsoft.Json.dll
 C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\obj\Debug\net7.0-windows\NienLuan1.UserUI.resources
+C:\Users\IDEAPAD\source\repos\NienLuan1\NienLuan1\obj\Debug\net7.0-windows\NienLuan1.ShowShiftForm.resources
