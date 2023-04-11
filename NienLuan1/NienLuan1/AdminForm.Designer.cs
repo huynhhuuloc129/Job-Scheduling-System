@@ -38,6 +38,12 @@
             logoutBtn = new MetroSet_UI.Controls.MetroSetButton();
             sortBtn = new MetroSet_UI.Controls.MetroSetButton();
             saveDataBtn = new MetroSet_UI.Controls.MetroSetButton();
+            labelDay = new MetroSet_UI.Controls.MetroSetLabel();
+            comboBoxDay = new MetroSet_UI.Controls.MetroSetComboBox();
+            labelShift = new MetroSet_UI.Controls.MetroSetLabel();
+            comboBoxShift = new MetroSet_UI.Controls.MetroSetComboBox();
+            labelName = new MetroSet_UI.Controls.MetroSetLabel();
+            comboBoxName = new MetroSet_UI.Controls.MetroSetComboBox();
             SuspendLayout();
             // 
             // metroSetControlBox1
@@ -210,6 +216,7 @@
             saveDataBtn.DisabledBackColor = Color.FromArgb(120, 65, 177, 225);
             saveDataBtn.DisabledBorderColor = Color.FromArgb(120, 65, 177, 225);
             saveDataBtn.DisabledForeColor = Color.Gray;
+            saveDataBtn.Enabled = false;
             saveDataBtn.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
             saveDataBtn.HoverBorderColor = Color.FromArgb(95, 207, 255);
             saveDataBtn.HoverColor = Color.FromArgb(95, 207, 255);
@@ -232,11 +239,152 @@
             saveDataBtn.ThemeName = "MetroLite";
             saveDataBtn.Click += saveDataBtn_Click;
             // 
+            // labelDay
+            // 
+            labelDay.AutoSize = true;
+            labelDay.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            labelDay.IsDerivedStyle = true;
+            labelDay.Location = new Point(506, 155);
+            labelDay.Name = "labelDay";
+            labelDay.Size = new Size(44, 20);
+            labelDay.Style = MetroSet_UI.Enums.Style.Light;
+            labelDay.StyleManager = null;
+            labelDay.TabIndex = 17;
+            labelDay.Text = "Day:";
+            labelDay.ThemeAuthor = "Narwin";
+            labelDay.ThemeName = "MetroLite";
+            // 
+            // comboBoxDay
+            // 
+            comboBoxDay.AllowDrop = true;
+            comboBoxDay.ArrowColor = Color.FromArgb(150, 150, 150);
+            comboBoxDay.BackColor = Color.Transparent;
+            comboBoxDay.BackgroundColor = Color.FromArgb(238, 238, 238);
+            comboBoxDay.BorderColor = Color.FromArgb(150, 150, 150);
+            comboBoxDay.CausesValidation = false;
+            comboBoxDay.DisabledBackColor = Color.FromArgb(204, 204, 204);
+            comboBoxDay.DisabledBorderColor = Color.FromArgb(155, 155, 155);
+            comboBoxDay.DisabledForeColor = Color.FromArgb(136, 136, 136);
+            comboBoxDay.DrawMode = DrawMode.OwnerDrawFixed;
+            comboBoxDay.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxDay.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBoxDay.FormattingEnabled = true;
+            comboBoxDay.IsDerivedStyle = true;
+            comboBoxDay.ItemHeight = 20;
+            comboBoxDay.Location = new Point(556, 155);
+            comboBoxDay.Name = "comboBoxDay";
+            comboBoxDay.SelectedItemBackColor = Color.FromArgb(65, 177, 225);
+            comboBoxDay.SelectedItemForeColor = Color.White;
+            comboBoxDay.Size = new Size(99, 26);
+            comboBoxDay.Style = MetroSet_UI.Enums.Style.Light;
+            comboBoxDay.StyleManager = null;
+            comboBoxDay.TabIndex = 18;
+            comboBoxDay.ThemeAuthor = "Narwin";
+            comboBoxDay.ThemeName = "MetroLite";
+            comboBoxDay.SelectedIndexChanged += metroSetComboBox1_SelectedIndexChanged;
+            // 
+            // labelShift
+            // 
+            labelShift.AutoSize = true;
+            labelShift.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            labelShift.IsDerivedStyle = true;
+            labelShift.Location = new Point(713, 155);
+            labelShift.Name = "labelShift";
+            labelShift.Size = new Size(48, 20);
+            labelShift.Style = MetroSet_UI.Enums.Style.Light;
+            labelShift.StyleManager = null;
+            labelShift.TabIndex = 19;
+            labelShift.Text = "Shift:";
+            labelShift.ThemeAuthor = "Narwin";
+            labelShift.ThemeName = "MetroLite";
+            // 
+            // comboBoxShift
+            // 
+            comboBoxShift.AllowDrop = true;
+            comboBoxShift.ArrowColor = Color.FromArgb(150, 150, 150);
+            comboBoxShift.BackColor = Color.Transparent;
+            comboBoxShift.BackgroundColor = Color.FromArgb(238, 238, 238);
+            comboBoxShift.BorderColor = Color.FromArgb(150, 150, 150);
+            comboBoxShift.CausesValidation = false;
+            comboBoxShift.DisabledBackColor = Color.FromArgb(204, 204, 204);
+            comboBoxShift.DisabledBorderColor = Color.FromArgb(155, 155, 155);
+            comboBoxShift.DisabledForeColor = Color.FromArgb(136, 136, 136);
+            comboBoxShift.DrawMode = DrawMode.OwnerDrawFixed;
+            comboBoxShift.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxShift.Enabled = false;
+            comboBoxShift.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBoxShift.FormattingEnabled = true;
+            comboBoxShift.IsDerivedStyle = true;
+            comboBoxShift.ItemHeight = 20;
+            comboBoxShift.Location = new Point(767, 155);
+            comboBoxShift.Name = "comboBoxShift";
+            comboBoxShift.SelectedItemBackColor = Color.FromArgb(65, 177, 225);
+            comboBoxShift.SelectedItemForeColor = Color.White;
+            comboBoxShift.Size = new Size(44, 26);
+            comboBoxShift.Style = MetroSet_UI.Enums.Style.Light;
+            comboBoxShift.StyleManager = null;
+            comboBoxShift.TabIndex = 20;
+            comboBoxShift.ThemeAuthor = "Narwin";
+            comboBoxShift.ThemeName = "MetroLite";
+            comboBoxShift.SelectedIndexChanged += comboBoxShift_SelectedIndexChanged;
+            // 
+            // labelName
+            // 
+            labelName.AutoSize = true;
+            labelName.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            labelName.IsDerivedStyle = true;
+            labelName.Location = new Point(838, 155);
+            labelName.Name = "labelName";
+            labelName.Size = new Size(58, 20);
+            labelName.Style = MetroSet_UI.Enums.Style.Light;
+            labelName.StyleManager = null;
+            labelName.TabIndex = 21;
+            labelName.Text = "Name:";
+            labelName.ThemeAuthor = "Narwin";
+            labelName.ThemeName = "MetroLite";
+            // 
+            // comboBoxName
+            // 
+            comboBoxName.AllowDrop = true;
+            comboBoxName.ArrowColor = Color.FromArgb(150, 150, 150);
+            comboBoxName.BackColor = Color.Transparent;
+            comboBoxName.BackgroundColor = Color.FromArgb(238, 238, 238);
+            comboBoxName.BorderColor = Color.FromArgb(150, 150, 150);
+            comboBoxName.CausesValidation = false;
+            comboBoxName.DisabledBackColor = Color.FromArgb(204, 204, 204);
+            comboBoxName.DisabledBorderColor = Color.FromArgb(155, 155, 155);
+            comboBoxName.DisabledForeColor = Color.FromArgb(136, 136, 136);
+            comboBoxName.DrawMode = DrawMode.OwnerDrawFixed;
+            comboBoxName.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxName.Enabled = false;
+            comboBoxName.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBoxName.FormattingEnabled = true;
+            comboBoxName.IsDerivedStyle = true;
+            comboBoxName.ItemHeight = 20;
+            comboBoxName.Location = new Point(902, 155);
+            comboBoxName.Name = "comboBoxName";
+            comboBoxName.SelectedItemBackColor = Color.FromArgb(65, 177, 225);
+            comboBoxName.SelectedItemForeColor = Color.White;
+            comboBoxName.Size = new Size(169, 26);
+            comboBoxName.Style = MetroSet_UI.Enums.Style.Light;
+            comboBoxName.StyleManager = null;
+            comboBoxName.TabIndex = 22;
+            comboBoxName.ThemeAuthor = "Narwin";
+            comboBoxName.ThemeName = "MetroLite";
+            comboBoxName.SelectedIndexChanged += comboBoxName_SelectedIndexChanged;
+            // 
             // AdminForm
             // 
             AutoScaleDimensions = new SizeF(13F, 26F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
             ClientSize = new Size(1319, 357);
+            Controls.Add(comboBoxName);
+            Controls.Add(labelName);
+            Controls.Add(comboBoxShift);
+            Controls.Add(labelShift);
+            Controls.Add(comboBoxDay);
+            Controls.Add(labelDay);
             Controls.Add(saveDataBtn);
             Controls.Add(sortBtn);
             Controls.Add(logoutBtn);
@@ -266,5 +414,11 @@
         private MetroSet_UI.Controls.MetroSetButton logoutBtn;
         private MetroSet_UI.Controls.MetroSetButton sortBtn;
         private MetroSet_UI.Controls.MetroSetButton saveDataBtn;
+        private MetroSet_UI.Controls.MetroSetLabel labelDay;
+        private MetroSet_UI.Controls.MetroSetComboBox comboBoxDay;
+        private MetroSet_UI.Controls.MetroSetLabel labelShift;
+        private MetroSet_UI.Controls.MetroSetComboBox comboBoxShift;
+        private MetroSet_UI.Controls.MetroSetLabel labelName;
+        private MetroSet_UI.Controls.MetroSetComboBox comboBoxName;
     }
 }

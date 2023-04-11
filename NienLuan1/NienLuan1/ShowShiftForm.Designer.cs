@@ -65,7 +65,7 @@
             usernameLabel.IsDerivedStyle = true;
             usernameLabel.Location = new Point(91, 52);
             usernameLabel.Name = "usernameLabel";
-            usernameLabel.Size = new Size(103, 22);
+            usernameLabel.Size = new Size(356, 22);
             usernameLabel.Style = MetroSet_UI.Enums.Style.Light;
             usernameLabel.StyleManager = null;
             usernameLabel.TabIndex = 8;

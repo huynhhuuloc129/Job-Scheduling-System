@@ -64,7 +64,7 @@ namespace NienLuan1
                 cbMonday[i].AutoSize = true;
                 cbMonday[i].BackColor = Color.White;
                 cbMonday[i].ForeColor = Color.Black;
-                if (Array.IndexOf(thisAccount.shiftMonday, i+1) > -1)
+                if (Array.IndexOf(thisAccount.shiftMonday, i + 1) > -1)
                 {
                     cbMonday[i].Checked = true;
                 }
@@ -142,7 +142,7 @@ namespace NienLuan1
             for (i = 0; i < shiftList.Count; i++)
             {
                 var shiftLabel = new MetroSetLabel();
-                shiftLabel.Text = "Shift "+ (i+1).ToString() + ": " + shiftList[i].timeStart.ToString() + " - " + shiftList[i].timeEnd.ToString();
+                shiftLabel.Text = "Shift " + (i + 1).ToString() + ": " + shiftList[i].timeStart.ToString() + " - " + shiftList[i].timeEnd.ToString();
                 shiftLabel.AutoSize = true;
                 shiftLabel.Location = new System.Drawing.Point(400, 240 + 26 * i);
                 this.Controls.Add(shiftLabel);
@@ -206,7 +206,7 @@ namespace NienLuan1
                     countChecked++;
                 }
                 if (cbFriday[i].Checked)
-                {   
+                {
                     accountList[positionAcc].shiftFriday[i] = 1;
                     countChecked++;
                 }
@@ -216,7 +216,7 @@ namespace NienLuan1
                     countChecked++;
                 }
                 if (cbSunday[i].Checked)
-                {   
+                {
                     accountList[positionAcc].shiftSunday[i] = 1;
                     countChecked++;
                 }

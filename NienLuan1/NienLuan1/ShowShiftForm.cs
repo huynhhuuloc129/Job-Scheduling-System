@@ -38,6 +38,7 @@ namespace NienLuan1
                 }
             }
             usernameLabel.Text = "Username: " + username;
+            usernameLabel.AutoSize = true;
             for (int i = 0; i < shiftList.Count; i++)
             {
                 MetroSetLabel metroSetLabel = new MetroSetLabel();
